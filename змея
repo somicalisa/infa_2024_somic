@@ -1,0 +1,70 @@
+import pygame
+from pygame.draw import *
+import time
+import random
+from food import *
+from settings import *
+pygame.init()
+
+
+class Snake:
+    def __init__(self, screen):
+        self.screen = screen
+        self.color = 'purple'
+        self.speed = FPS
+        self.block = block
+        self.length = Length_of_snake
+        self.x_change = 0
+        self.y_change = 0 
+        self.snake()
+        
+    def snake(self):
+        '''создаём змейку'''
+        self.x = WIDTH / 2
+        self.y = HEIGHT / 2
+        self.block
+        self.block
+        self.color
+    
+    def draw(self):
+        pygame.draw.rect(
+            self.screen,
+            self.color,
+            [self.x, self.y, self.block, self.block]
+        )
+        
+    def move(self, event):
+        '''движение зависит от кнопки на которую нажимают'''
+        if event:
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.x_change = -self.block
+                    self. y_change = 0
+                elif event.key == pygame.K_RIGHT: 
+                    self.x_change = self.block
+                    self.y_change = 0
+                elif event.key == pygame.K_UP:
+                    self.x_change = 0
+                    self.y_change = -self.block
+                elif event.key == pygame.K_DOWN:
+                    self.x_change = 0
+                    self.y_change = self.block
+                    
+        if self.x >= WIDTH or self.x < 0 or self.y >= HEIGHT or self.y < 0:
+            finished = True
+        self.x += self.x_change
+        self.y += self.y_change
+    
+        
+    def eating(self, obj):
+        return self.x ==  obj.x and self.y == obj.y
+    
+    
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+clock = pygame.time.Clock()
+snake = Snake(screen)
+food = Food(screen)
+finished = False
