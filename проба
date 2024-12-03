@@ -1,0 +1,39 @@
+import pygame
+from pygame.draw import *
+from settings import *
+from snake import *
+from food import *
+pygame.init()
+pygame.font.init()
+
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) #размер экрана
+pygame.display.update()
+pygame.display.set_caption('Троллейбус') #название игры
+
+clock = pygame.time.Clock()
+font_style = pygame.font.SysFont(None, 30) 
+
+def message(msg, color): #создаём функцию, которая будет показывать сообщения на игровом экране
+    mesg = font_style.render(msg, True, color)
+    screen.blit(mesg, [WIDTH / 10, HEIGHT / 3])
+
+
+while not finished:
+    screen.fill(black)
+    food.draw()
+    snake.draw()
+    pygame.display.update()
+
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+        
+        if event.type == pygame.KEYDOWN:
+            snake.move(event)
+        
+            
+pygame.quit()
+ 
+    
