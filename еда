@@ -1,0 +1,29 @@
+import pygame
+from pygame.draw import *
+import time
+import random
+from settings import *
+pygame.init()
+
+
+class Food:
+    def __init__(self, screen):
+        self.screen = screen
+        self.color = 'blue'
+        self.block = block
+        self.new_food()
+        
+    def new_food(self):
+        foodx = self.x = random.randint(0, WIDTH // self.block - 1) * self.block  #переменная указывающая положение еды по оси x
+        foody = self.y =  random.randint(0, HEIGHT // self.block - 1) * self.block #переменная указывающая положение еды по оси y
+        x2 = self.block
+        y2 = self.block
+        color = self.color
+        
+    def draw(self):
+        pygame.draw.rect(
+            self.screen,
+            self.color,
+            [self.x, self.y, self.block, self.block]
+        )
+    
